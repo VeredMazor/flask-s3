@@ -82,7 +82,6 @@ def signin():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    print(img_url)
     return render_template('home.html', video_url="/video")
 
 
