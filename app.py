@@ -5,7 +5,6 @@ from flask import Flask,render_template, flash,request ,redirect, Response
 import secrets
 #import requests
 import boto3
-from dotenv import load_dotenv
 
 
 load_dotenv()
