@@ -1,17 +1,18 @@
+import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask import Flask,render_template, flash,request ,redirect
+from flask import Flask,render_template, flash,request ,redirect, Response
+import secrets
 #import requests
 import boto3
-from botocore import UNSIGNED
-from botocore.client import Config
+from dotenv import load_dotenv
 
-from io import BytesIO
 
-import secrets
+load_dotenv()
+
 s3 = boto3.client('s3')
 
-img_url = s3.generate_presigned_url('get_object',Params={'Bucket': 'vered-mazor-s3','Key': 'shih-tzu-dog.jpeg'})
+img_url = s3.generate_presigned_url('get_object',Params={'Bucket': os.getenv("S3NAME"),'Key': 'shih-tzu-dog.jpeg'})
 
 
 
@@ -65,10 +66,41 @@ def signup():
         return render_template('signup.html')
 
 
+@app.route('/signin', methods=['GET', 'POST'])
+def signin():
+    if request.method == 'POST':
+        username = request.method.form['username']
+        password = request.method.form['password']
+        user = User(username=username, password=password)
+        if user:
+            return redirect('/home')
+        else:
+            return render_template('signin.html')
+    else:
+        return render_template('signin.html')
+        
+            
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     print(img_url)
-    return render_template('home.html', img=img_url)
+    return render_template('home.html', video_url="/video")
+
+
+
+@app.route('/video')
+def video():
+    # Presuming you have AWS credentials set up in your environment or using IAM roles in EC2
+    bucket_name = 'vered-mazor-s3'
+    video_file = "test.mp4"
+    video_object = s3.get_object(Bucket=bucket_name, Key=video_file)
+    return Response(
+        video_object['Body'].read(),
+        mimetype='shih-tzu-dog.jpeg',
+        headers={
+            "Content-Disposition": "inline; filename={}".format(video_file)
+        }
+    )
 
 
 
