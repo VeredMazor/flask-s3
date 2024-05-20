@@ -91,11 +91,11 @@ def home():
 def video():
     # Presuming you have AWS credentials set up in your environment or using IAM roles in EC2
     bucket_name = 'vered-mazor-s3'
-    video_file = "test.mp4"
+    video_file = "shih-tzu-dog.jpeg"
     video_object = s3.get_object(Bucket=bucket_name, Key=video_file)
     return Response(
         video_object['Body'].read(),
-        mimetype='shih-tzu-dog.jpeg',
+        mimetype='jpeg',
         headers={
             "Content-Disposition": "inline; filename={}".format(video_file)
         }
