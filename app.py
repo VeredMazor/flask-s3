@@ -11,7 +11,7 @@ import boto3
 
 s3 = boto3.client('s3')
 
-img_url = s3.generate_presigned_url('get_object',Params={'Bucket': os.getenv("S3NAME"),'Key': 'shih-tzu-dog.jpeg'})
+#img_url = s3.generate_presigned_url('get_object',Params={'Bucket': os.getenv("S3NAME"),'Key': 'shih-tzu-dog.jpeg'})
 
 
 
