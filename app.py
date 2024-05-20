@@ -7,7 +7,7 @@ import secrets
 import boto3
 
 
-load_dotenv()
+
 
 s3 = boto3.client('s3')
 
