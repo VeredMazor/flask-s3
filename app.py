@@ -11,7 +11,7 @@ from io import BytesIO
 import secrets
 s3 = boto3.client('s3')
 
-img_url = s3.generate_presigned_url('get_object',Params={'Bucket': #,'Key': 'shih-tzu-dog.jpeg'})
+img_url = s3.generate_presigned_url('get_object',Params={'Bucket': vered-mazor-s3,'Key': 'shih-tzu-dog.jpeg'})
 
 
 
