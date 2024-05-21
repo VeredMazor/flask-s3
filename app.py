@@ -5,13 +5,14 @@ from flask import Flask,render_template, flash,request ,redirect, Response
 import secrets
 #import requests
 import boto3
+from dotenv import load_dotenv
 
 
-
+load_dotenv()
 
 s3 = boto3.client('s3')
 
-#img_url = s3.generate_presigned_url('get_object',Params={'Bucket': os.getenv("S3NAME"),'Key': 'shih-tzu-dog.jpeg'})
+img_url = s3.generate_presigned_url('get_object',Params={'Bucket': os.getenv("S3NAME"),'Key': 'shih-tzu-dog.jpeg'})
 
 
 
@@ -40,6 +41,20 @@ with app.app_context():
 
 
 @app.route('/', methods=['GET', 'POST'])
+def signin():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username, password=password).first()
+        if user:
+            return redirect('/home/' + username)
+        else:
+            flash("Invalid credentials, please try again.")
+            return render_template('signin.html')
+    else:
+        return render_template('signin.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         try:
@@ -49,58 +64,50 @@ def signup():
             print(password)
             user = User.query.filter_by(username=username).first()
             if user:
-                flash("user is exists")
+                flash("User already exists")
                 return render_template('signup.html')
             user_obj = User(username=username, password=password)
             db.session.add(user_obj)
             db.session.commit()
-            return redirect('/home')
+            return redirect('/home/' + username)
         except Exception as e:
             error = str(e)
-            #flash(error, 'error')
-        # After processing the POST request, return the template
-        return redirect('/home')
+            flash(error, 'error')
+            return render_template('signup.html')
     else:
-        # For GET requests, simply render the template
         return render_template('signup.html')
 
 
-@app.route('/signin', methods=['GET', 'POST'])
-def signin():
-    if request.method == 'POST':
-        username = request.method.form['username']
-        password = request.method.form['password']
-        user = User(username=username, password=password)
-        if user:
-            return redirect('/home')
-        else:
-            return render_template('signin.html')
-    else:
-        return render_template('signin.html')
-        
+
             
 
-@app.route('/home', methods=['GET', 'POST'])
-def home():
-    return render_template('home.html', video_url="/video")
+@app.route('/home/<username>', methods=['GET', 'POST'])
+def home(username):
+    #print(img_url)
+    return render_template('home.html',name=username, img=img_url)
 
 
 
-@app.route('/video')
+"""@app.route('/video')
 def video():
     # Presuming you have AWS credentials set up in your environment or using IAM roles in EC2
     bucket_name = 'vered-mazor-s3'
-    video_file = "shih-tzu-dog.jpeg"
+    video_file = "test.mp4"
     video_object = s3.get_object(Bucket=bucket_name, Key=video_file)
     return Response(
         video_object['Body'].read(),
-        mimetype='jpeg',
+        mimetype='shih-tzu-dog.jpeg',
         headers={
             "Content-Disposition": "inline; filename={}".format(video_file)
         }
-    )
+    )"""
 
-
+@app.route('/logout')
+def logout():
+    os.environ.pop('AWS_ACCESS_KEY_ID', None)
+    os.environ.pop('AWS_SECRET_ACCESS_KEY', None)
+    os.environ.pop('AWS_SESSION_TOKEN', None)
+    return render_template('signin.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5555)
