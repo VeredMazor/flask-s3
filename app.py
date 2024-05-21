@@ -33,8 +33,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    password = db.Column(db.String(20), unique=True, nullable=False)
-    is_admin = db.Column(db.Boolean, default=False)
+    email = db.Column(db.String(20), unique=True, nullable=False)
 
 with app.app_context():
     db.create_all()
@@ -44,8 +43,8 @@ with app.app_context():
 def signin():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
-        user = User.query.filter_by(username=username, password=password).first()
+        email = request.form['email']
+        user = User.query.filter_by(username=username, email=email).first()
         if user:
             return redirect('/home/' + username)
         else:
@@ -59,14 +58,14 @@ def signup():
     if request.method == 'POST':
         try:
             username = request.form['username']
-            password = request.form['password']
+            email = request.form['email']
             print(username)
-            print(password)
+            print(email)
             user = User.query.filter_by(username=username).first()
             if user:
                 flash("User already exists")
                 return render_template('signup.html')
-            user_obj = User(username=username, password=password)
+            user_obj = User(username=username, email=email)
             db.session.add(user_obj)
             db.session.commit()
             return redirect('/home/' + username)
@@ -88,26 +87,12 @@ def home(username):
 
 
 
-"""@app.route('/video')
-def video():
-    # Presuming you have AWS credentials set up in your environment or using IAM roles in EC2
-    bucket_name = 'vered-mazor-s3'
-    video_file = "test.mp4"
-    video_object = s3.get_object(Bucket=bucket_name, Key=video_file)
-    return Response(
-        video_object['Body'].read(),
-        mimetype='shih-tzu-dog.jpeg',
-        headers={
-            "Content-Disposition": "inline; filename={}".format(video_file)
-        }
-    )"""
-
 @app.route('/logout')
 def logout():
     os.environ.pop('AWS_ACCESS_KEY_ID', None)
     os.environ.pop('AWS_SECRET_ACCESS_KEY', None)
     os.environ.pop('AWS_SESSION_TOKEN', None)
-    return render_template('signin.html')
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5555)
