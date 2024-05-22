@@ -67,5 +67,5 @@ Home:
 Home with load balancer:
 <img width="1512" alt="Home with load balancer" src="https://github.com/VeredMazor/flask-s3/assets/72979004/01d9ada7-1203-4458-8d42-3ec32cd19186">
 
-License
+### License
 This project is licensed under the MIT License. See the LICENSE file for details.
