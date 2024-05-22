@@ -67,5 +67,12 @@ Home:
 Home with load balancer and auto scaling group:
 <img width="1512" alt="Home with load balancer" src="https://github.com/VeredMazor/flask-s3/assets/72979004/01d9ada7-1203-4458-8d42-3ec32cd19186">
 
+### Commands to apply pressure to add more EC2 instance with auto scaling group
+```bash
+sudo apt-get install stress-ng
+
+stress-ng --cpu $(nproc) --timeout 5m --metrics-brief
+```
+
 ### License
 This project is licensed under the MIT License. See the LICENSE file for details.
