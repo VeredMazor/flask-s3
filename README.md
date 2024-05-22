@@ -2,14 +2,6 @@
 ### Overview
 This project is a Flask-based web application that allows users to sign up, sign in, and view a home page with an image retrieved from an AWS S3 bucket. The application uses SQLAlchemy for database management and Flask-Migrate for handling database migrations. User credentials are securely managed, and session management is implemented to ensure user security.
 
-### Images
-Sign in:
-<img width="1512" alt="Sign in" src="https://github.com/VeredMazor/flask-s3/assets/72979004/f2ab854e-208a-4a17-a60c-25fc6accc1cc">
-Sign up:
-<img width="1512" alt="Sign up" src="https://github.com/VeredMazor/flask-s3/assets/72979004/a6f20836-bee9-41d8-8891-83b94a72b615">
-Home:
-<img width="1507" alt="Home" src="https://github.com/VeredMazor/flask-s3/assets/72979004/6b476ad8-11cd-4918-9dfd-9754950c3c54">
-
 
 
 ### Features
@@ -64,6 +56,15 @@ cd flask-s3 https://github.com/VeredMazor/flask-s3.git
 docker build -t myapp .
 docker run -d -p 5555:5555 myapp
 ```
+
+### Images
+Sign in:
+<img width="1512" alt="Sign in" src="https://github.com/VeredMazor/flask-s3/assets/72979004/f2ab854e-208a-4a17-a60c-25fc6accc1cc">
+Sign up:
+<img width="1512" alt="Sign up" src="https://github.com/VeredMazor/flask-s3/assets/72979004/a6f20836-bee9-41d8-8891-83b94a72b615">
+Home:
+<img width="1507" alt="Home" src="https://github.com/VeredMazor/flask-s3/assets/72979004/6b476ad8-11cd-4918-9dfd-9754950c3c54">
+Home with load balancer:
 <img width="1512" alt="Home with load balancer" src="https://github.com/VeredMazor/flask-s3/assets/72979004/01d9ada7-1203-4458-8d42-3ec32cd19186">
 
 License
