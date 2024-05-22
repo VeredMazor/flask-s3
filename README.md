@@ -1,6 +1,14 @@
-# Flask Web Application with AWS S3 Integration
+# Flask Web Application with AWS S3 Integration and EC2 Integration
 ### Overview
 This project is a Flask-based web application that allows users to sign up, sign in, and view a home page with an image retrieved from an AWS S3 bucket. The application uses SQLAlchemy for database management and Flask-Migrate for handling database migrations. User credentials are securely managed, and session management is implemented to ensure user security.
+
+### Images
+
+<img width="1512" alt="Sign in" src="https://github.com/VeredMazor/flask-s3/assets/72979004/f2ab854e-208a-4a17-a60c-25fc6accc1cc">
+<img width="1512" alt="Sign up" src="https://github.com/VeredMazor/flask-s3/assets/72979004/a6f20836-bee9-41d8-8891-83b94a72b615">
+<img width="1507" alt="Home" src="https://github.com/VeredMazor/flask-s3/assets/72979004/6b476ad8-11cd-4918-9dfd-9754950c3c54">
+
+
 
 ### Features
 * User registration and authentication
