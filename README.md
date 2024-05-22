@@ -50,7 +50,7 @@ sudo systemctl start docker
 ```bash
 mkdir myapp
 git clone
-cd flask-s3
+cd flask-s3 https://github.com/VeredMazor/flask-s3.git
 docker build -t myapp .
 docker run -d -p 5555:5555 myapp
 ```
