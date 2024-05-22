@@ -46,6 +46,14 @@ sudo apt-get update
 sudo apt-get install docker.io -y
 sudo systemctl start docker
 ```
+### Create container with app
+```bash
+mkdir myapp
+git clone
+cd flask-s3
+docker build -t myapp .
+docker run -d -p 5555:5555 myapp
+```
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
