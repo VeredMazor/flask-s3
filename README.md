@@ -3,11 +3,14 @@
 This project is a Flask-based web application that allows users to sign up, sign in, and view a home page with an image retrieved from an AWS S3 bucket. The application uses SQLAlchemy for database management and Flask-Migrate for handling database migrations. User credentials are securely managed, and session management is implemented to ensure user security.
 
 ### Features
-User registration and authentication
-Integration with AWS S3 to display an image on the home page
-Database management using SQLAlchemy
-Secure handling of environment variables using python-dotenv
-Requirements
+* User registration and authentication
+* Integration with AWS S3 to display an image on the home page
+* Database management using SQLAlchemy
+* Secure handling of environment variables using python-dotenv
+
+
+### Requirements
+
 The application depends on several Python packages. These are listed in the requirements.txt file:
 
 plaintext
