@@ -64,6 +64,7 @@ cd flask-s3 https://github.com/VeredMazor/flask-s3.git
 docker build -t myapp .
 docker run -d -p 5555:5555 myapp
 ```
+<img width="1512" alt="Home with load balancer" src="https://github.com/VeredMazor/flask-s3/assets/72979004/01d9ada7-1203-4458-8d42-3ec32cd19186">
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
