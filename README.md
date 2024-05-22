@@ -13,8 +13,8 @@ This project is a Flask-based web application that allows users to sign up, sign
 
 The application depends on several Python packages. These are listed in the requirements.txt file:
 
-plaintext
-Copy code
+
+```plaintext
 alembic==1.13.1
 blinker==1.8.2
 boto3==1.20.54
@@ -38,6 +38,8 @@ urllib3==1.26.18
 Werkzeug==3.0.3
 Installation
 Clone the repository:
+```
+
 
 sh
 Copy code
