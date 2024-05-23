@@ -68,7 +68,7 @@ Home:
 #!/bin/bash
 
 # Clone the project repository
-git clone "https://github.com/YardenAronson/DevOps_final_project.git"
+git clone "https://github.com/VeredMazor/flask-s3.git"
 
 # Update package lists and install Docker
 sudo apt-get update
@@ -81,8 +81,8 @@ sudo systemctl start docker
 cd myapp/
 
 # Set up environment variables in .env file
-echo "BUCKET_NAME=YOUR_BUCKET_NAME" >> .env
-echo "IMAGE_NAME=YOUR_IMAGE_NAME" >> .env
+echo "S3NAME" >> .env
+echo "IMAGE" >> .env
 
 # Build Docker image for Flask app
 sudo docker build -t myapp .
