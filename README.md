@@ -64,6 +64,7 @@ Sign up:
 <img width="1512" alt="Sign up" src="https://github.com/VeredMazor/flask-s3/assets/72979004/a6f20836-bee9-41d8-8891-83b94a72b615">
 Home:
 <img width="1507" alt="Home" src="https://github.com/VeredMazor/flask-s3/assets/72979004/6b476ad8-11cd-4918-9dfd-9754950c3c54">
+### Auto scaling template
 ```
 #!/bin/bash
 
@@ -81,8 +82,8 @@ sudo systemctl start docker
 cd myapp/
 
 # Set up environment variables in .env file
-echo "S3NAME" >> .env
-echo "IMAGE" >> .env
+echo "S3NAME=YOUR_BUCKET_NAME" >> .env
+echo "IMAGE=YOUR_IMAGE_NAME" >> .env
 
 # Build Docker image for Flask app
 sudo docker build -t myapp .
