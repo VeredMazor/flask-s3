@@ -64,6 +64,33 @@ Sign up:
 <img width="1512" alt="Sign up" src="https://github.com/VeredMazor/flask-s3/assets/72979004/a6f20836-bee9-41d8-8891-83b94a72b615">
 Home:
 <img width="1507" alt="Home" src="https://github.com/VeredMazor/flask-s3/assets/72979004/6b476ad8-11cd-4918-9dfd-9754950c3c54">
+```
+#!/bin/bash
+
+# Clone the project repository
+git clone "https://github.com/YardenAronson/DevOps_final_project.git"
+
+# Update package lists and install Docker
+sudo apt-get update
+sudo apt-get install docker.io -y
+
+# Start Docker service
+sudo systemctl start docker
+
+# Navigate to the project directory
+cd myapp/
+
+# Set up environment variables in .env file
+echo "BUCKET_NAME=YOUR_BUCKET_NAME" >> .env
+echo "IMAGE_NAME=YOUR_IMAGE_NAME" >> .env
+
+# Build Docker image for Flask app
+sudo docker build -t myapp .
+
+# Run and open the container to port 5555
+sudo docker run -p 5555:5555  myapp
+```
+
 Home with load balancer and auto scaling group:
 <img width="1512" alt="Home with load balancer" src="https://github.com/VeredMazor/flask-s3/assets/72979004/01d9ada7-1203-4458-8d42-3ec32cd19186">
 
